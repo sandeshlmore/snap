@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: restore
+spec:
+  dataSource:
+    name: "data-postgresql-0-20220224003900"
+    kind: VolumeSnapshot
+    apiGroup: snapshot.storage.k8s.io
+  accessModes: [ "ReadWriteOnce" ]
+  storageClassName: "csi-hostpath-sc"
+  resources:
+    requests:
+      storage: 0.5Gi

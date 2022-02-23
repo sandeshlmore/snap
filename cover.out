@@ -1,0 +1,13 @@
+mode: set
+github.com/db/snap/controllers/snapshot_controller.go:54.100,61.16 4 0
+github.com/db/snap/controllers/snapshot_controller.go:65.2,75.16 4 0
+github.com/db/snap/controllers/snapshot_controller.go:79.2,79.36 1 0
+github.com/db/snap/controllers/snapshot_controller.go:88.2,88.27 1 0
+github.com/db/snap/controllers/snapshot_controller.go:61.16,63.3 1 0
+github.com/db/snap/controllers/snapshot_controller.go:75.16,77.3 1 0
+github.com/db/snap/controllers/snapshot_controller.go:79.36,82.17 3 0
+github.com/db/snap/controllers/snapshot_controller.go:82.17,85.4 2 0
+github.com/db/snap/controllers/snapshot_controller.go:92.71,96.2 1 0
+github.com/db/snap/controllers/snapshot_controller.go:99.105,120.16 5 0
+github.com/db/snap/controllers/snapshot_controller.go:124.2,124.12 1 0
+github.com/db/snap/controllers/snapshot_controller.go:120.16,122.3 1 0
