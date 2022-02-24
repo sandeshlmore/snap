@@ -1,9 +1,20 @@
-k -n snap-system apply -f ./config/crd/bases/db.db_snapshots.yaml
+# Deploy CRD
+k apply -f deploy/crd.yaml
 
-k -n snap-system apply -f ./config/rbac/role.yaml 
 
-k -n snap-system apply -f ./config/rbac/service_account.yaml 
+# Deploy Controller
 
-k -n snap-system apply -f ./config/rbac/role_binding.yaml
+k apply -f ./deploy/rbac/role.yaml 
 
-k -n snap-system apply -f ./config/deployment.yaml
+k apply -f ./deploy/rbac/service_account.yaml 
+
+k apply -f ./deploy/rbac/role_binding.yaml
+
+k apply -f ./codeploynfig/deployment.yaml
+
+
+# create CRD resource which will trigger snapshot of volume
+k apply -f ./deploy/snapshot1.yaml
+
+
+
