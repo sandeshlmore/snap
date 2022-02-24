@@ -1,0 +1,16 @@
+domain: db
+layout:
+- go.kubebuilder.io/v3
+projectName: snap
+repo: github.com/db/snap
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: db
+  group: db
+  kind: Snapshot
+  path: github.com/db/snap/api/v1alpha1
+  version: v1alpha1
+version: "3"

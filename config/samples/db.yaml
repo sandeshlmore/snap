@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgresql
+spec:
+  selector:
+    matchLabels:
+      app: postgresql
+  serviceName: postgresql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgresql
+    spec:
+      containers:
+      - name: postgresql
+        image: postgres:12
+        envFrom:
+        - secretRef:
+            name: postgresql
+        ports:
+        - containerPort: 5432
+          name: postgresql-port
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/data
+      # volumes:
+      # - name: data
+      #   persistentVolumeClaim:
+      #     claimName: restore
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      # dataSource:
+      #   name: data-postgresql-0-20220224003900
+      #   kind: VolumeSnapshot
+      #   apiGroup: snapshot.storage.k8s.io
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "csi-hostpath-sc"
+      resources:
+        requests:
+          storage: 0.5Gi
+
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgresql
+data:
+  POSTGRES_PASSWORD: cGFzc3cwcmQxMjM=
+  POSTGRES_DB: Ym9va3M=
+  POSTGRES_USER: Ym9va3N1c2Vy
+  PGDATA: L3Zhci9saWIvcG9zdGdyZXNxbC9kYXRhL3BnZGF0YQ==
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql
+  labels:
+    app: postgresql
+spec:
+  ports:
+  - port: 5432
+    targetPort: 5432
+    name: postgresql-port
+  clusterIP: None
+  selector:
+      app: postgresql
+
+---
+
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: csi-hostpath-sc
+provisioner: hostpath.csi.k8s.io
+volumeBindingMode: Immediate
+
+---
