@@ -1,0 +1,6 @@
+apiVersion: snapshot.db.dev/v1alpha1
+kind: Snapshot
+metadata:
+  name: postgresqlsnap1
+spec:
+  snapshotpvcselector: "postgresqlsnap1"
