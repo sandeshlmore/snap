@@ -16,13 +16,16 @@ If I install MySQl application, insert some data into the database, take backup 
 ***Backup***
 
 
-- User can create a CRD for taking snapshots for  PVCs.
-
-    CRD properties:
-        
-        snapshotpvcselector : PVC should have this label
-
-- When CRD is created Controller takes Snapshot of the PVCs for which the label snapshotpvcselector is defined 
+- User can create a CR for taking snapshots for  PVCs.
+```
+    apiVersion: snapshot.db.dev/v1alpha1
+    kind: Snapshot
+    metadata:
+        name: postgresqlsnap1
+    spec:
+        snapshotpvcselector: "postgresqlsnap1"
+```
+- When CR is created Controller takes Snapshot of the PVCs for which the label snapshotpvcselector is defined 
 
 
 ***Restore***
