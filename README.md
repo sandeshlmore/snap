@@ -30,7 +30,7 @@ If I install MySQl application, insert some data into the database, take backup 
 
 ***Restore***
 
-- Restore of Snapshot can be done by adding "datasource" field in PersistentVolumeClaim object.
+- Restore of Snapshot can be done by adding "datasource" field in volumeClaimTemplates object.
 e.g.
 ```
     dataSource:
@@ -69,7 +69,7 @@ k apply -f ./manifests/role_binding.yaml
 k apply -f ./manifests/deployment.yaml
 ```
 
-#### Create CRD resource which will trigger snapshot of volume
+#### create Custom resource which will trigger snapshot of volume
 ```
 k apply -f ./manifests/examples/snapshot1.yaml
 
